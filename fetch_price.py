@@ -15,4 +15,4 @@ def hello_world():
 
 if __name__ == "__main__":
     price = fetch_solana_price()
-    print(f"Price: {price}")
+    print(price)

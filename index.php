@@ -11,11 +11,20 @@ function getWalletAddress() {
     return $wallet ?: 'Wallet not found';
 }
 
+
+
 // Funktion: Solana Preis abrufen
 function getSolanaPrice() {
-    $python = "C:\\Users\\DEINNAME\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
-    $price = trim(shell_exec("$python fetch_price.py"));
-    return is_numeric($price) ? (float)$price : 1;
+    $output = trim(shell_exec('python fetch_price.py')); // genau wie vorher
+
+    // Nur die erste Zahl extrahieren
+    if (preg_match('/\d+(\.\d+)?/', $output, $matches)) {
+        return (float)$matches[0]; // nur die Zahl
+    }
+
+    // Fehler nur anzeigen, kein Hardcode
+    trigger_error("Fehler beim Abrufen des Solana-Preises: ungültiger Output '$output'", E_USER_WARNING);
+    return null;
 }
 
 // Funktion: Solana Balance
