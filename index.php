@@ -69,7 +69,7 @@ $videoFiles = glob($videoDir . '*.mp4');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Porn</title>
+    <title>video buy</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -243,7 +243,8 @@ $videoFiles = glob($videoDir . '*.mp4');
                 // Get video duration in seconds
                 $duration = shell_exec("ffmpeg -i " . escapeshellarg($videoFile) . " 2>&1 | grep 'Duration' | awk '{print $2}' | tr -d ,");
                 list($hours, $minutes, $seconds) = explode(':', $duration);
-                $totalMinutes = $hours * 60 + $minutes + $seconds / 60;
+                //$totalMinutes = $hours * 60 + $minutes + $seconds / 60;
+                $totalMinutes = (int)$hours * 60 + (int)$minutes + (int)$seconds / 60;
 
                 // Calculate price per video
                 $priceInUsd = $totalMinutes * 0.30; // 30 cents per minute
